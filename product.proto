@@ -4,7 +4,7 @@ package go.escape.ship.proto.productapi;
 import "google/api/annotations.proto";
 import "google/protobuf/any.proto";
 
-option go_package = "github.com/escape-ship/proto/product/gen";
+option go_package = "github.com/escape-ship/protos/gen";
 
 // 카테고리 정보
 message Category {

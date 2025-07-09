@@ -3,7 +3,7 @@ package go.escape.ship.proto.orderapi;
 
 import "google/api/annotations.proto";
 
-option go_package = "github.com/escape-ship/proto/order/gen";
+option go_package = "github.com/escape-ship/protos/gen";
 
 service OrderService {
     rpc InsertOrder(InsertOrderRequest) returns (InsertOrderResponse) {
