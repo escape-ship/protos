@@ -44,6 +44,18 @@ tag:
 	git tag $$version && \
 	git push origin $$version
 
+tag-patch:
+	@echo "Creating patch version tag..."
+	@latest=$$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0"); \
+	major=$$(echo $$latest | cut -d. -f1 | sed 's/v//'); \
+	minor=$$(echo $$latest | cut -d. -f2); \
+	patch=$$(echo $$latest | cut -d. -f3); \
+	new_patch=$$((patch + 1)); \
+	new_version="v$$major.$$minor.$$new_patch"; \
+	echo "Bumping from $$latest to $$new_version"; \
+	git tag $$new_version && \
+	git push origin $$new_version
+
 publish: build
 	@echo "Publishing module..."
 	@git add .
@@ -73,6 +85,10 @@ update-consumers:
 release: build publish tag update-consumers
 	@echo "Release complete!"
 
+# Quick patch release
+quick-release: build publish tag-patch update-consumers
+	@echo "Quick patch release complete!"
+
 run:
 	@echo "Running..."
 	@./bin/$(shell basename $(PWD))
@@ -81,8 +97,20 @@ linter-golangci: ### check by golangci linter
 	golangci-lint run
 .PHONY: linter-golangci
 
+# Documentation commands
+doc: ### show package documentation
+	@go doc ./gen
+
+doc-full: ### show full package documentation with examples
+	@go doc -all ./gen
+
+doc-examples: ### show all examples
+	@go doc ./gen | grep "^func Example"
+
+.PHONY: doc doc-full doc-examples
+
 clean:
 	rm -f bin/$(shell basename $(PWD))
 	rm -rf gen/*
 
-.PHONY: all init build proto_gen tool_update tool_download mod-tidy mod-vendor tag publish update-consumers release clean
+.PHONY: all init build proto_gen tool_update tool_download mod-tidy mod-vendor tag tag-patch publish update-consumers release quick-release doc doc-full doc-examples clean
