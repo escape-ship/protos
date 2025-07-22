@@ -566,7 +566,7 @@ var File_order_proto protoreflect.FileDescriptor
 
 const file_order_proto_rawDesc = "" +
 	"\n" +
-	"\vorder.proto\x12\x1dgo.escape.ship.proto.orderapi\x1a\x1cgoogle/api/annotations.proto\"\xa9\x03\n" +
+	"\vorder.proto\x12\x17go.escape.ship.proto.v1\x1a\x1cgoogle/api/annotations.proto\"\xa3\x03\n" +
 	"\x05Order\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12!\n" +
@@ -582,8 +582,8 @@ const file_order_proto_rawDesc = "" +
 	"ordered_at\x18\n" +
 	" \x01(\tR\torderedAt\x12\x17\n" +
 	"\apaid_at\x18\v \x01(\tR\x06paidAt\x12\x12\n" +
-	"\x04memo\x18\f \x01(\tR\x04memo\x12>\n" +
-	"\x05items\x18\r \x03(\v2(.go.escape.ship.proto.orderapi.OrderItemR\x05items\"\xb9\x01\n" +
+	"\x04memo\x18\f \x01(\tR\x04memo\x128\n" +
+	"\x05items\x18\r \x03(\v2\".go.escape.ship.proto.v1.OrderItemR\x05items\"\xb9\x01\n" +
 	"\tOrderItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
 	"\border_id\x18\x02 \x01(\tR\aorderId\x12\x1d\n" +
@@ -591,7 +591,7 @@ const file_order_proto_rawDesc = "" +
 	"product_id\x18\x03 \x01(\tR\tproductId\x12!\n" +
 	"\fproduct_name\x18\x04 \x01(\tR\vproductName\x12#\n" +
 	"\rproduct_price\x18\x05 \x01(\x03R\fproductPrice\x12\x1a\n" +
-	"\bquantity\x18\x06 \x01(\x05R\bquantity\"\x94\x03\n" +
+	"\bquantity\x18\x06 \x01(\x05R\bquantity\"\x8e\x03\n" +
 	"\x12InsertOrderRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
 	"\forder_number\x18\x02 \x01(\tR\vorderNumber\x12\x16\n" +
@@ -604,8 +604,8 @@ const file_order_proto_rawDesc = "" +
 	"\x10shipping_address\x18\b \x01(\tR\x0fshippingAddress\x12\x17\n" +
 	"\apaid_at\x18\t \x01(\tR\x06paidAt\x12\x12\n" +
 	"\x04memo\x18\n" +
-	" \x01(\tR\x04memo\x12K\n" +
-	"\x05items\x18\v \x03(\v25.go.escape.ship.proto.orderapi.InsertOrderItemRequestR\x05items\"\x9b\x01\n" +
+	" \x01(\tR\x04memo\x12E\n" +
+	"\x05items\x18\v \x03(\v2/.go.escape.ship.proto.v1.InsertOrderItemRequestR\x05items\"\x9b\x01\n" +
 	"\x16InsertOrderItemRequest\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12!\n" +
@@ -614,12 +614,12 @@ const file_order_proto_rawDesc = "" +
 	"\bquantity\x18\x04 \x01(\x05R\bquantity\"%\n" +
 	"\x13InsertOrderResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x15\n" +
-	"\x13GetAllOrdersRequest\"T\n" +
-	"\x14GetAllOrdersResponse\x12<\n" +
-	"\x06orders\x18\x01 \x03(\v2$.go.escape.ship.proto.orderapi.OrderR\x06orders2\xaf\x02\n" +
-	"\fOrderService\x12\x91\x01\n" +
-	"\vInsertOrder\x121.go.escape.ship.proto.orderapi.InsertOrderRequest\x1a2.go.escape.ship.proto.orderapi.InsertOrderResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/order/insert\x12\x8a\x01\n" +
-	"\fGetAllOrders\x122.go.escape.ship.proto.orderapi.GetAllOrdersRequest\x1a3.go.escape.ship.proto.orderapi.GetAllOrdersResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/orderB#Z!github.com/escape-ship/protos/genb\x06proto3"
+	"\x13GetAllOrdersRequest\"N\n" +
+	"\x14GetAllOrdersResponse\x126\n" +
+	"\x06orders\x18\x01 \x03(\v2\x1e.go.escape.ship.proto.v1.OrderR\x06orders2\x96\x02\n" +
+	"\fOrderService\x12\x85\x01\n" +
+	"\vInsertOrder\x12+.go.escape.ship.proto.v1.InsertOrderRequest\x1a,.go.escape.ship.proto.v1.InsertOrderResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/order/insert\x12~\n" +
+	"\fGetAllOrders\x12,.go.escape.ship.proto.v1.GetAllOrdersRequest\x1a-.go.escape.ship.proto.v1.GetAllOrdersResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/orderB#Z!github.com/escape-ship/protos/genb\x06proto3"
 
 var (
 	file_order_proto_rawDescOnce sync.Once
@@ -635,22 +635,22 @@ func file_order_proto_rawDescGZIP() []byte {
 
 var file_order_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_order_proto_goTypes = []any{
-	(*Order)(nil),                  // 0: go.escape.ship.proto.orderapi.Order
-	(*OrderItem)(nil),              // 1: go.escape.ship.proto.orderapi.OrderItem
-	(*InsertOrderRequest)(nil),     // 2: go.escape.ship.proto.orderapi.InsertOrderRequest
-	(*InsertOrderItemRequest)(nil), // 3: go.escape.ship.proto.orderapi.InsertOrderItemRequest
-	(*InsertOrderResponse)(nil),    // 4: go.escape.ship.proto.orderapi.InsertOrderResponse
-	(*GetAllOrdersRequest)(nil),    // 5: go.escape.ship.proto.orderapi.GetAllOrdersRequest
-	(*GetAllOrdersResponse)(nil),   // 6: go.escape.ship.proto.orderapi.GetAllOrdersResponse
+	(*Order)(nil),                  // 0: go.escape.ship.proto.v1.Order
+	(*OrderItem)(nil),              // 1: go.escape.ship.proto.v1.OrderItem
+	(*InsertOrderRequest)(nil),     // 2: go.escape.ship.proto.v1.InsertOrderRequest
+	(*InsertOrderItemRequest)(nil), // 3: go.escape.ship.proto.v1.InsertOrderItemRequest
+	(*InsertOrderResponse)(nil),    // 4: go.escape.ship.proto.v1.InsertOrderResponse
+	(*GetAllOrdersRequest)(nil),    // 5: go.escape.ship.proto.v1.GetAllOrdersRequest
+	(*GetAllOrdersResponse)(nil),   // 6: go.escape.ship.proto.v1.GetAllOrdersResponse
 }
 var file_order_proto_depIdxs = []int32{
-	1, // 0: go.escape.ship.proto.orderapi.Order.items:type_name -> go.escape.ship.proto.orderapi.OrderItem
-	3, // 1: go.escape.ship.proto.orderapi.InsertOrderRequest.items:type_name -> go.escape.ship.proto.orderapi.InsertOrderItemRequest
-	0, // 2: go.escape.ship.proto.orderapi.GetAllOrdersResponse.orders:type_name -> go.escape.ship.proto.orderapi.Order
-	2, // 3: go.escape.ship.proto.orderapi.OrderService.InsertOrder:input_type -> go.escape.ship.proto.orderapi.InsertOrderRequest
-	5, // 4: go.escape.ship.proto.orderapi.OrderService.GetAllOrders:input_type -> go.escape.ship.proto.orderapi.GetAllOrdersRequest
-	4, // 5: go.escape.ship.proto.orderapi.OrderService.InsertOrder:output_type -> go.escape.ship.proto.orderapi.InsertOrderResponse
-	6, // 6: go.escape.ship.proto.orderapi.OrderService.GetAllOrders:output_type -> go.escape.ship.proto.orderapi.GetAllOrdersResponse
+	1, // 0: go.escape.ship.proto.v1.Order.items:type_name -> go.escape.ship.proto.v1.OrderItem
+	3, // 1: go.escape.ship.proto.v1.InsertOrderRequest.items:type_name -> go.escape.ship.proto.v1.InsertOrderItemRequest
+	0, // 2: go.escape.ship.proto.v1.GetAllOrdersResponse.orders:type_name -> go.escape.ship.proto.v1.Order
+	2, // 3: go.escape.ship.proto.v1.OrderService.InsertOrder:input_type -> go.escape.ship.proto.v1.InsertOrderRequest
+	5, // 4: go.escape.ship.proto.v1.OrderService.GetAllOrders:input_type -> go.escape.ship.proto.v1.GetAllOrdersRequest
+	4, // 5: go.escape.ship.proto.v1.OrderService.InsertOrder:output_type -> go.escape.ship.proto.v1.InsertOrderResponse
+	6, // 6: go.escape.ship.proto.v1.OrderService.GetAllOrders:output_type -> go.escape.ship.proto.v1.GetAllOrdersResponse
 	5, // [5:7] is the sub-list for method output_type
 	3, // [3:5] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

@@ -35,9 +35,9 @@ var (
 	_ = metadata.Join
 )
 
-func request_Account_GetKakaoLoginURL_0(ctx context.Context, marshaler runtime.Marshaler, client AccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AccountService_GetKakaoLoginURL_0(ctx context.Context, marshaler runtime.Marshaler, client AccountServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq KakaoLoginRequest
+		protoReq GetKakaoLoginURLRequest
 		metadata runtime.ServerMetadata
 	)
 	io.Copy(io.Discard, req.Body)
@@ -45,18 +45,18 @@ func request_Account_GetKakaoLoginURL_0(ctx context.Context, marshaler runtime.M
 	return msg, metadata, err
 }
 
-func local_request_Account_GetKakaoLoginURL_0(ctx context.Context, marshaler runtime.Marshaler, server AccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AccountService_GetKakaoLoginURL_0(ctx context.Context, marshaler runtime.Marshaler, server AccountServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq KakaoLoginRequest
+		protoReq GetKakaoLoginURLRequest
 		metadata runtime.ServerMetadata
 	)
 	msg, err := server.GetKakaoLoginURL(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_Account_GetKakaoCallBack_0(ctx context.Context, marshaler runtime.Marshaler, client AccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AccountService_GetKakaoCallBack_0(ctx context.Context, marshaler runtime.Marshaler, client AccountServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq KakaoCallBackRequest
+		protoReq GetKakaoCallBackRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -66,9 +66,9 @@ func request_Account_GetKakaoCallBack_0(ctx context.Context, marshaler runtime.M
 	return msg, metadata, err
 }
 
-func local_request_Account_GetKakaoCallBack_0(ctx context.Context, marshaler runtime.Marshaler, server AccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AccountService_GetKakaoCallBack_0(ctx context.Context, marshaler runtime.Marshaler, server AccountServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq KakaoCallBackRequest
+		protoReq GetKakaoCallBackRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -78,7 +78,7 @@ func local_request_Account_GetKakaoCallBack_0(ctx context.Context, marshaler run
 	return msg, metadata, err
 }
 
-func request_Account_Login_0(ctx context.Context, marshaler runtime.Marshaler, client AccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AccountService_Login_0(ctx context.Context, marshaler runtime.Marshaler, client AccountServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq LoginRequest
 		metadata runtime.ServerMetadata
@@ -90,7 +90,7 @@ func request_Account_Login_0(ctx context.Context, marshaler runtime.Marshaler, c
 	return msg, metadata, err
 }
 
-func local_request_Account_Login_0(ctx context.Context, marshaler runtime.Marshaler, server AccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AccountService_Login_0(ctx context.Context, marshaler runtime.Marshaler, server AccountServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq LoginRequest
 		metadata runtime.ServerMetadata
@@ -102,7 +102,7 @@ func local_request_Account_Login_0(ctx context.Context, marshaler runtime.Marsha
 	return msg, metadata, err
 }
 
-func request_Account_Register_0(ctx context.Context, marshaler runtime.Marshaler, client AccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AccountService_Register_0(ctx context.Context, marshaler runtime.Marshaler, client AccountServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq RegisterRequest
 		metadata runtime.ServerMetadata
@@ -114,7 +114,7 @@ func request_Account_Register_0(ctx context.Context, marshaler runtime.Marshaler
 	return msg, metadata, err
 }
 
-func local_request_Account_Register_0(ctx context.Context, marshaler runtime.Marshaler, server AccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_AccountService_Register_0(ctx context.Context, marshaler runtime.Marshaler, server AccountServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq RegisterRequest
 		metadata runtime.ServerMetadata
@@ -126,99 +126,99 @@ func local_request_Account_Register_0(ctx context.Context, marshaler runtime.Mar
 	return msg, metadata, err
 }
 
-// RegisterAccountHandlerServer registers the http handlers for service Account to "mux".
-// UnaryRPC     :call AccountServer directly.
+// RegisterAccountServiceHandlerServer registers the http handlers for service AccountService to "mux".
+// UnaryRPC     :call AccountServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAccountHandlerFromEndpoint instead.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAccountServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
-func RegisterAccountHandlerServer(ctx context.Context, mux *runtime.ServeMux, server AccountServer) error {
-	mux.Handle(http.MethodGet, pattern_Account_GetKakaoLoginURL_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+func RegisterAccountServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server AccountServiceServer) error {
+	mux.Handle(http.MethodGet, pattern_AccountService_GetKakaoLoginURL_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.accountapi.Account/GetKakaoLoginURL", runtime.WithHTTPPathPattern("/oauth/kakao/login"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.AccountService/GetKakaoLoginURL", runtime.WithHTTPPathPattern("/oauth/kakao/login"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Account_GetKakaoLoginURL_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AccountService_GetKakaoLoginURL_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Account_GetKakaoLoginURL_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AccountService_GetKakaoLoginURL_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Account_GetKakaoCallBack_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AccountService_GetKakaoCallBack_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.accountapi.Account/GetKakaoCallBack", runtime.WithHTTPPathPattern("/oauth/kakao/callback"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.AccountService/GetKakaoCallBack", runtime.WithHTTPPathPattern("/oauth/kakao/callback"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Account_GetKakaoCallBack_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AccountService_GetKakaoCallBack_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Account_GetKakaoCallBack_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AccountService_GetKakaoCallBack_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Account_Login_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AccountService_Login_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.accountapi.Account/Login", runtime.WithHTTPPathPattern("/login"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.AccountService/Login", runtime.WithHTTPPathPattern("/login"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Account_Login_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AccountService_Login_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Account_Login_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AccountService_Login_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Account_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AccountService_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.accountapi.Account/Register", runtime.WithHTTPPathPattern("/register"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.AccountService/Register", runtime.WithHTTPPathPattern("/register"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Account_Register_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_AccountService_Register_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Account_Register_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AccountService_Register_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
 }
 
-// RegisterAccountHandlerFromEndpoint is same as RegisterAccountHandler but
+// RegisterAccountServiceHandlerFromEndpoint is same as RegisterAccountServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterAccountHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterAccountServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
@@ -237,102 +237,102 @@ func RegisterAccountHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeM
 			}
 		}()
 	}()
-	return RegisterAccountHandler(ctx, mux, conn)
+	return RegisterAccountServiceHandler(ctx, mux, conn)
 }
 
-// RegisterAccountHandler registers the http handlers for service Account to "mux".
+// RegisterAccountServiceHandler registers the http handlers for service AccountService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterAccountHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterAccountHandlerClient(ctx, mux, NewAccountClient(conn))
+func RegisterAccountServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterAccountServiceHandlerClient(ctx, mux, NewAccountServiceClient(conn))
 }
 
-// RegisterAccountHandlerClient registers the http handlers for service Account
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "AccountClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "AccountClient"
+// RegisterAccountServiceHandlerClient registers the http handlers for service AccountService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "AccountServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "AccountServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "AccountClient" to call the correct interceptors. This client ignores the HTTP middlewares.
-func RegisterAccountHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AccountClient) error {
-	mux.Handle(http.MethodGet, pattern_Account_GetKakaoLoginURL_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+// "AccountServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
+func RegisterAccountServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AccountServiceClient) error {
+	mux.Handle(http.MethodGet, pattern_AccountService_GetKakaoLoginURL_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.accountapi.Account/GetKakaoLoginURL", runtime.WithHTTPPathPattern("/oauth/kakao/login"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.AccountService/GetKakaoLoginURL", runtime.WithHTTPPathPattern("/oauth/kakao/login"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Account_GetKakaoLoginURL_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AccountService_GetKakaoLoginURL_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Account_GetKakaoLoginURL_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AccountService_GetKakaoLoginURL_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Account_GetKakaoCallBack_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AccountService_GetKakaoCallBack_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.accountapi.Account/GetKakaoCallBack", runtime.WithHTTPPathPattern("/oauth/kakao/callback"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.AccountService/GetKakaoCallBack", runtime.WithHTTPPathPattern("/oauth/kakao/callback"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Account_GetKakaoCallBack_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AccountService_GetKakaoCallBack_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Account_GetKakaoCallBack_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AccountService_GetKakaoCallBack_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Account_Login_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AccountService_Login_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.accountapi.Account/Login", runtime.WithHTTPPathPattern("/login"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.AccountService/Login", runtime.WithHTTPPathPattern("/login"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Account_Login_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AccountService_Login_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Account_Login_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AccountService_Login_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_Account_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_AccountService_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.accountapi.Account/Register", runtime.WithHTTPPathPattern("/register"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.AccountService/Register", runtime.WithHTTPPathPattern("/register"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Account_Register_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AccountService_Register_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_Account_Register_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AccountService_Register_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_Account_GetKakaoLoginURL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"oauth", "kakao", "login"}, ""))
-	pattern_Account_GetKakaoCallBack_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"oauth", "kakao", "callback"}, ""))
-	pattern_Account_Login_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"login"}, ""))
-	pattern_Account_Register_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"register"}, ""))
+	pattern_AccountService_GetKakaoLoginURL_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"oauth", "kakao", "login"}, ""))
+	pattern_AccountService_GetKakaoCallBack_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"oauth", "kakao", "callback"}, ""))
+	pattern_AccountService_Login_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"login"}, ""))
+	pattern_AccountService_Register_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"register"}, ""))
 )
 
 var (
-	forward_Account_GetKakaoLoginURL_0 = runtime.ForwardResponseMessage
-	forward_Account_GetKakaoCallBack_0 = runtime.ForwardResponseMessage
-	forward_Account_Login_0            = runtime.ForwardResponseMessage
-	forward_Account_Register_0         = runtime.ForwardResponseMessage
+	forward_AccountService_GetKakaoLoginURL_0 = runtime.ForwardResponseMessage
+	forward_AccountService_GetKakaoCallBack_0 = runtime.ForwardResponseMessage
+	forward_AccountService_Login_0            = runtime.ForwardResponseMessage
+	forward_AccountService_Register_0         = runtime.ForwardResponseMessage
 )

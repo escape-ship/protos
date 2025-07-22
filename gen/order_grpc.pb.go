@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OrderService_InsertOrder_FullMethodName  = "/go.escape.ship.proto.orderapi.OrderService/InsertOrder"
-	OrderService_GetAllOrders_FullMethodName = "/go.escape.ship.proto.orderapi.OrderService/GetAllOrders"
+	OrderService_InsertOrder_FullMethodName  = "/go.escape.ship.proto.v1.OrderService/InsertOrder"
+	OrderService_GetAllOrders_FullMethodName = "/go.escape.ship.proto.v1.OrderService/GetAllOrders"
 )
 
 // OrderServiceClient is the client API for OrderService service.
@@ -142,7 +142,7 @@ func _OrderService_GetAllOrders_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrderService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "go.escape.ship.proto.orderapi.OrderService",
+	ServiceName: "go.escape.ship.proto.v1.OrderService",
 	HandlerType: (*OrderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

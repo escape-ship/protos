@@ -90,7 +90,7 @@ func RegisterOrderServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.orderapi.OrderService/InsertOrder", runtime.WithHTTPPathPattern("/v1/order/insert"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.OrderService/InsertOrder", runtime.WithHTTPPathPattern("/v1/order/insert"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -110,7 +110,7 @@ func RegisterOrderServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.orderapi.OrderService/GetAllOrders", runtime.WithHTTPPathPattern("/v1/order"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.OrderService/GetAllOrders", runtime.WithHTTPPathPattern("/v1/order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -168,7 +168,7 @@ func RegisterOrderServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.orderapi.OrderService/InsertOrder", runtime.WithHTTPPathPattern("/v1/order/insert"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.OrderService/InsertOrder", runtime.WithHTTPPathPattern("/v1/order/insert"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -185,7 +185,7 @@ func RegisterOrderServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.orderapi.OrderService/GetAllOrders", runtime.WithHTTPPathPattern("/v1/order"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.OrderService/GetAllOrders", runtime.WithHTTPPathPattern("/v1/order"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PaymentService_KakaoReady_FullMethodName   = "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoReady"
-	PaymentService_KakaoApprove_FullMethodName = "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoApprove"
-	PaymentService_KakaoCancel_FullMethodName  = "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoCancel"
+	PaymentService_KakaoReady_FullMethodName   = "/go.escape.ship.proto.v1.PaymentService/KakaoReady"
+	PaymentService_KakaoApprove_FullMethodName = "/go.escape.ship.proto.v1.PaymentService/KakaoApprove"
+	PaymentService_KakaoCancel_FullMethodName  = "/go.escape.ship.proto.v1.PaymentService/KakaoCancel"
 )
 
 // PaymentServiceClient is the client API for PaymentService service.
@@ -180,7 +180,7 @@ func _PaymentService_KakaoCancel_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PaymentService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "go.escape.ship.proto.paymentapi.v1.PaymentService",
+	ServiceName: "go.escape.ship.proto.v1.PaymentService",
 	HandlerType: (*PaymentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

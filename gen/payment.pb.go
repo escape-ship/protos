@@ -109,11 +109,12 @@ func (x *KakaoReadyRequest) GetTaxFreeAmount() int64 {
 
 type KakaoReadyResponse struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	NextRedirectAppUrl    string                 `protobuf:"bytes,1,opt,name=next_redirect_app_url,json=nextRedirectAppUrl,proto3" json:"next_redirect_app_url,omitempty"`
-	NextRedirectMobileUrl string                 `protobuf:"bytes,2,opt,name=next_redirect_mobile_url,json=nextRedirectMobileUrl,proto3" json:"next_redirect_mobile_url,omitempty"`
-	NextRedirectPcUrl     string                 `protobuf:"bytes,3,opt,name=next_redirect_pc_url,json=nextRedirectPcUrl,proto3" json:"next_redirect_pc_url,omitempty"`
-	AndroidAppScheme      string                 `protobuf:"bytes,4,opt,name=android_app_scheme,json=androidAppScheme,proto3" json:"android_app_scheme,omitempty"`
-	IosAppScheme          string                 `protobuf:"bytes,5,opt,name=ios_app_scheme,json=iosAppScheme,proto3" json:"ios_app_scheme,omitempty"`
+	Tid                   string                 `protobuf:"bytes,1,opt,name=tid,proto3" json:"tid,omitempty"`
+	NextRedirectAppUrl    string                 `protobuf:"bytes,2,opt,name=next_redirect_app_url,json=nextRedirectAppUrl,proto3" json:"next_redirect_app_url,omitempty"`
+	NextRedirectMobileUrl string                 `protobuf:"bytes,3,opt,name=next_redirect_mobile_url,json=nextRedirectMobileUrl,proto3" json:"next_redirect_mobile_url,omitempty"`
+	NextRedirectPcUrl     string                 `protobuf:"bytes,4,opt,name=next_redirect_pc_url,json=nextRedirectPcUrl,proto3" json:"next_redirect_pc_url,omitempty"`
+	AndroidAppScheme      string                 `protobuf:"bytes,5,opt,name=android_app_scheme,json=androidAppScheme,proto3" json:"android_app_scheme,omitempty"`
+	IosAppScheme          string                 `protobuf:"bytes,6,opt,name=ios_app_scheme,json=iosAppScheme,proto3" json:"ios_app_scheme,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -146,6 +147,13 @@ func (x *KakaoReadyResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use KakaoReadyResponse.ProtoReflect.Descriptor instead.
 func (*KakaoReadyResponse) Descriptor() ([]byte, []int) {
 	return file_payment_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *KakaoReadyResponse) GetTid() string {
+	if x != nil {
+		return x.Tid
+	}
+	return ""
 }
 
 func (x *KakaoReadyResponse) GetNextRedirectAppUrl() string {
@@ -184,11 +192,13 @@ func (x *KakaoReadyResponse) GetIosAppScheme() string {
 }
 
 type KakaoApproveRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	PgToken       string                 `protobuf:"bytes,2,opt,name=pg_token,json=pgToken,proto3" json:"pg_token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Tid            string                 `protobuf:"bytes,1,opt,name=tid,proto3" json:"tid,omitempty"`
+	PartnerOrderId string                 `protobuf:"bytes,2,opt,name=partner_order_id,json=partnerOrderId,proto3" json:"partner_order_id,omitempty"`
+	PartnerUserId  string                 `protobuf:"bytes,3,opt,name=partner_user_id,json=partnerUserId,proto3" json:"partner_user_id,omitempty"`
+	PgToken        string                 `protobuf:"bytes,4,opt,name=pg_token,json=pgToken,proto3" json:"pg_token,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *KakaoApproveRequest) Reset() {
@@ -221,9 +231,23 @@ func (*KakaoApproveRequest) Descriptor() ([]byte, []int) {
 	return file_payment_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *KakaoApproveRequest) GetOrderId() string {
+func (x *KakaoApproveRequest) GetTid() string {
 	if x != nil {
-		return x.OrderId
+		return x.Tid
+	}
+	return ""
+}
+
+func (x *KakaoApproveRequest) GetPartnerOrderId() string {
+	if x != nil {
+		return x.PartnerOrderId
+	}
+	return ""
+}
+
+func (x *KakaoApproveRequest) GetPartnerUserId() string {
+	if x != nil {
+		return x.PartnerUserId
 	}
 	return ""
 }
@@ -236,10 +260,10 @@ func (x *KakaoApproveRequest) GetPgToken() string {
 }
 
 type KakaoApproveResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	PartnerOrderId string                 `protobuf:"bytes,1,opt,name=partner_order_id,json=partnerOrderId,proto3" json:"partner_order_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *KakaoApproveResponse) Reset() {
@@ -272,16 +296,16 @@ func (*KakaoApproveResponse) Descriptor() ([]byte, []int) {
 	return file_payment_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *KakaoApproveResponse) GetOrderId() string {
+func (x *KakaoApproveResponse) GetPartnerOrderId() string {
 	if x != nil {
-		return x.OrderId
+		return x.PartnerOrderId
 	}
 	return ""
 }
 
 type KakaoCancelRequest struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	OrderId               string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	PartnerOrderId        string                 `protobuf:"bytes,1,opt,name=partner_order_id,json=partnerOrderId,proto3" json:"partner_order_id,omitempty"`
 	CancelAmount          string                 `protobuf:"bytes,2,opt,name=cancel_amount,json=cancelAmount,proto3" json:"cancel_amount,omitempty"`
 	CancelTaxFreeAmount   int64                  `protobuf:"varint,3,opt,name=cancel_tax_free_amount,json=cancelTaxFreeAmount,proto3" json:"cancel_tax_free_amount,omitempty"`
 	CancelVatAmount       int64                  `protobuf:"varint,4,opt,name=cancel_vat_amount,json=cancelVatAmount,proto3" json:"cancel_vat_amount,omitempty"`
@@ -320,9 +344,9 @@ func (*KakaoCancelRequest) Descriptor() ([]byte, []int) {
 	return file_payment_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *KakaoCancelRequest) GetOrderId() string {
+func (x *KakaoCancelRequest) GetPartnerOrderId() string {
 	if x != nil {
-		return x.OrderId
+		return x.PartnerOrderId
 	}
 	return ""
 }
@@ -356,10 +380,10 @@ func (x *KakaoCancelRequest) GetCancelAvailableAmount() int64 {
 }
 
 type KakaoCancelResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	PartnerOrderId string                 `protobuf:"bytes,1,opt,name=partner_order_id,json=partnerOrderId,proto3" json:"partner_order_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *KakaoCancelResponse) Reset() {
@@ -392,9 +416,9 @@ func (*KakaoCancelResponse) Descriptor() ([]byte, []int) {
 	return file_payment_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *KakaoCancelResponse) GetOrderId() string {
+func (x *KakaoCancelResponse) GetPartnerOrderId() string {
 	if x != nil {
-		return x.OrderId
+		return x.PartnerOrderId
 	}
 	return ""
 }
@@ -403,40 +427,43 @@ var File_payment_proto protoreflect.FileDescriptor
 
 const file_payment_proto_rawDesc = "" +
 	"\n" +
-	"\rpayment.proto\x12\"go.escape.ship.proto.paymentapi.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\xe9\x01\n" +
+	"\rpayment.proto\x12\x17go.escape.ship.proto.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\xe9\x01\n" +
 	"\x11KakaoReadyRequest\x12(\n" +
 	"\x10partner_order_id\x18\x01 \x01(\tR\x0epartnerOrderId\x12&\n" +
 	"\x0fpartner_user_id\x18\x02 \x01(\tR\rpartnerUserId\x12\x1b\n" +
 	"\titem_name\x18\x03 \x01(\tR\bitemName\x12\x1a\n" +
 	"\bquantity\x18\x04 \x01(\x05R\bquantity\x12!\n" +
 	"\ftotal_amount\x18\x05 \x01(\x03R\vtotalAmount\x12&\n" +
-	"\x0ftax_free_amount\x18\x06 \x01(\x03R\rtaxFreeAmount\"\x85\x02\n" +
-	"\x12KakaoReadyResponse\x121\n" +
-	"\x15next_redirect_app_url\x18\x01 \x01(\tR\x12nextRedirectAppUrl\x127\n" +
-	"\x18next_redirect_mobile_url\x18\x02 \x01(\tR\x15nextRedirectMobileUrl\x12/\n" +
-	"\x14next_redirect_pc_url\x18\x03 \x01(\tR\x11nextRedirectPcUrl\x12,\n" +
-	"\x12android_app_scheme\x18\x04 \x01(\tR\x10androidAppScheme\x12$\n" +
-	"\x0eios_app_scheme\x18\x05 \x01(\tR\fiosAppScheme\"K\n" +
-	"\x13KakaoApproveRequest\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\x12\x19\n" +
-	"\bpg_token\x18\x02 \x01(\tR\apgToken\"1\n" +
-	"\x14KakaoApproveResponse\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\"\xed\x01\n" +
-	"\x12KakaoCancelRequest\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\x12#\n" +
+	"\x0ftax_free_amount\x18\x06 \x01(\x03R\rtaxFreeAmount\"\x97\x02\n" +
+	"\x12KakaoReadyResponse\x12\x10\n" +
+	"\x03tid\x18\x01 \x01(\tR\x03tid\x121\n" +
+	"\x15next_redirect_app_url\x18\x02 \x01(\tR\x12nextRedirectAppUrl\x127\n" +
+	"\x18next_redirect_mobile_url\x18\x03 \x01(\tR\x15nextRedirectMobileUrl\x12/\n" +
+	"\x14next_redirect_pc_url\x18\x04 \x01(\tR\x11nextRedirectPcUrl\x12,\n" +
+	"\x12android_app_scheme\x18\x05 \x01(\tR\x10androidAppScheme\x12$\n" +
+	"\x0eios_app_scheme\x18\x06 \x01(\tR\fiosAppScheme\"\x94\x01\n" +
+	"\x13KakaoApproveRequest\x12\x10\n" +
+	"\x03tid\x18\x01 \x01(\tR\x03tid\x12(\n" +
+	"\x10partner_order_id\x18\x02 \x01(\tR\x0epartnerOrderId\x12&\n" +
+	"\x0fpartner_user_id\x18\x03 \x01(\tR\rpartnerUserId\x12\x19\n" +
+	"\bpg_token\x18\x04 \x01(\tR\apgToken\"@\n" +
+	"\x14KakaoApproveResponse\x12(\n" +
+	"\x10partner_order_id\x18\x01 \x01(\tR\x0epartnerOrderId\"\xfc\x01\n" +
+	"\x12KakaoCancelRequest\x12(\n" +
+	"\x10partner_order_id\x18\x01 \x01(\tR\x0epartnerOrderId\x12#\n" +
 	"\rcancel_amount\x18\x02 \x01(\tR\fcancelAmount\x123\n" +
 	"\x16cancel_tax_free_amount\x18\x03 \x01(\x03R\x13cancelTaxFreeAmount\x12*\n" +
 	"\x11cancel_vat_amount\x18\x04 \x01(\x03R\x0fcancelVatAmount\x126\n" +
-	"\x17cancel_available_amount\x18\x05 \x01(\x03R\x15cancelAvailableAmount\"0\n" +
-	"\x13KakaoCancelResponse\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId2\x87\x06\n" +
-	"\x0ePaymentService\x12\xef\x01\n" +
+	"\x17cancel_available_amount\x18\x05 \x01(\x03R\x15cancelAvailableAmount\"?\n" +
+	"\x13KakaoCancelResponse\x12(\n" +
+	"\x10partner_order_id\x18\x01 \x01(\tR\x0epartnerOrderId2\xc5\x05\n" +
+	"\x0ePaymentService\x12\xd9\x01\n" +
 	"\n" +
-	"KakaoReady\x125.go.escape.ship.proto.paymentapi.v1.KakaoReadyRequest\x1a6.go.escape.ship.proto.paymentapi.v1.KakaoReadyResponse\"r\x92AP\n" +
-	"\x0eKakao Payments\x12\x18Ready payment with Kakao\x1a$Initiate payment process with Kakao.\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/payment/kakao/ready\x12\xfc\x01\n" +
-	"\fKakaoApprove\x127.go.escape.ship.proto.paymentapi.v1.KakaoApproveRequest\x1a8.go.escape.ship.proto.paymentapi.v1.KakaoApproveResponse\"y\x92AU\n" +
-	"\x0eKakao Payments\x12\x1aApprove payment with Kakao\x1a'Approve the payment process with Kakao.\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/payment/kakao/approve\x12\x83\x02\n" +
-	"\vKakaoCancel\x126.go.escape.ship.proto.paymentapi.v1.KakaoCancelRequest\x1a7.go.escape.ship.proto.paymentapi.v1.KakaoCancelResponse\"\x82\x01\x92A_\n" +
+	"KakaoReady\x12*.go.escape.ship.proto.v1.KakaoReadyRequest\x1a+.go.escape.ship.proto.v1.KakaoReadyResponse\"r\x92AP\n" +
+	"\x0eKakao Payments\x12\x18Ready payment with Kakao\x1a$Initiate payment process with Kakao.\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/payment/kakao/ready\x12\xe6\x01\n" +
+	"\fKakaoApprove\x12,.go.escape.ship.proto.v1.KakaoApproveRequest\x1a-.go.escape.ship.proto.v1.KakaoApproveResponse\"y\x92AU\n" +
+	"\x0eKakao Payments\x12\x1aApprove payment with Kakao\x1a'Approve the payment process with Kakao.\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/payment/kakao/approve\x12\xed\x01\n" +
+	"\vKakaoCancel\x12+.go.escape.ship.proto.v1.KakaoCancelRequest\x1a,.go.escape.ship.proto.v1.KakaoCancelResponse\"\x82\x01\x92A_\n" +
 	"\x0eKakao Payments\x12\x19Cancel payment with Kakao\x1a2Cancel an ongoing or completed payment with Kakao.\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/payment/kakao/cancelB#Z!github.com/escape-ship/protos/genb\x06proto3"
 
 var (
@@ -453,20 +480,20 @@ func file_payment_proto_rawDescGZIP() []byte {
 
 var file_payment_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_payment_proto_goTypes = []any{
-	(*KakaoReadyRequest)(nil),    // 0: go.escape.ship.proto.paymentapi.v1.KakaoReadyRequest
-	(*KakaoReadyResponse)(nil),   // 1: go.escape.ship.proto.paymentapi.v1.KakaoReadyResponse
-	(*KakaoApproveRequest)(nil),  // 2: go.escape.ship.proto.paymentapi.v1.KakaoApproveRequest
-	(*KakaoApproveResponse)(nil), // 3: go.escape.ship.proto.paymentapi.v1.KakaoApproveResponse
-	(*KakaoCancelRequest)(nil),   // 4: go.escape.ship.proto.paymentapi.v1.KakaoCancelRequest
-	(*KakaoCancelResponse)(nil),  // 5: go.escape.ship.proto.paymentapi.v1.KakaoCancelResponse
+	(*KakaoReadyRequest)(nil),    // 0: go.escape.ship.proto.v1.KakaoReadyRequest
+	(*KakaoReadyResponse)(nil),   // 1: go.escape.ship.proto.v1.KakaoReadyResponse
+	(*KakaoApproveRequest)(nil),  // 2: go.escape.ship.proto.v1.KakaoApproveRequest
+	(*KakaoApproveResponse)(nil), // 3: go.escape.ship.proto.v1.KakaoApproveResponse
+	(*KakaoCancelRequest)(nil),   // 4: go.escape.ship.proto.v1.KakaoCancelRequest
+	(*KakaoCancelResponse)(nil),  // 5: go.escape.ship.proto.v1.KakaoCancelResponse
 }
 var file_payment_proto_depIdxs = []int32{
-	0, // 0: go.escape.ship.proto.paymentapi.v1.PaymentService.KakaoReady:input_type -> go.escape.ship.proto.paymentapi.v1.KakaoReadyRequest
-	2, // 1: go.escape.ship.proto.paymentapi.v1.PaymentService.KakaoApprove:input_type -> go.escape.ship.proto.paymentapi.v1.KakaoApproveRequest
-	4, // 2: go.escape.ship.proto.paymentapi.v1.PaymentService.KakaoCancel:input_type -> go.escape.ship.proto.paymentapi.v1.KakaoCancelRequest
-	1, // 3: go.escape.ship.proto.paymentapi.v1.PaymentService.KakaoReady:output_type -> go.escape.ship.proto.paymentapi.v1.KakaoReadyResponse
-	3, // 4: go.escape.ship.proto.paymentapi.v1.PaymentService.KakaoApprove:output_type -> go.escape.ship.proto.paymentapi.v1.KakaoApproveResponse
-	5, // 5: go.escape.ship.proto.paymentapi.v1.PaymentService.KakaoCancel:output_type -> go.escape.ship.proto.paymentapi.v1.KakaoCancelResponse
+	0, // 0: go.escape.ship.proto.v1.PaymentService.KakaoReady:input_type -> go.escape.ship.proto.v1.KakaoReadyRequest
+	2, // 1: go.escape.ship.proto.v1.PaymentService.KakaoApprove:input_type -> go.escape.ship.proto.v1.KakaoApproveRequest
+	4, // 2: go.escape.ship.proto.v1.PaymentService.KakaoCancel:input_type -> go.escape.ship.proto.v1.KakaoCancelRequest
+	1, // 3: go.escape.ship.proto.v1.PaymentService.KakaoReady:output_type -> go.escape.ship.proto.v1.KakaoReadyResponse
+	3, // 4: go.escape.ship.proto.v1.PaymentService.KakaoApprove:output_type -> go.escape.ship.proto.v1.KakaoApproveResponse
+	5, // 5: go.escape.ship.proto.v1.PaymentService.KakaoCancel:output_type -> go.escape.ship.proto.v1.KakaoCancelResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

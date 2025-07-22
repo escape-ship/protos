@@ -1,5 +1,5 @@
 syntax = "proto3";
-package go.escape.ship.proto.orderapi;
+package go.escape.ship.proto.v1;
 
 import "google/api/annotations.proto";
 

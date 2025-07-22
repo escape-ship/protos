@@ -10,7 +10,6 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/anypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -23,26 +22,26 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type KakaoLoginRequest struct {
+type GetKakaoLoginURLRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *KakaoLoginRequest) Reset() {
-	*x = KakaoLoginRequest{}
+func (x *GetKakaoLoginURLRequest) Reset() {
+	*x = GetKakaoLoginURLRequest{}
 	mi := &file_account_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *KakaoLoginRequest) String() string {
+func (x *GetKakaoLoginURLRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*KakaoLoginRequest) ProtoMessage() {}
+func (*GetKakaoLoginURLRequest) ProtoMessage() {}
 
-func (x *KakaoLoginRequest) ProtoReflect() protoreflect.Message {
+func (x *GetKakaoLoginURLRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_account_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,32 +53,32 @@ func (x *KakaoLoginRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use KakaoLoginRequest.ProtoReflect.Descriptor instead.
-func (*KakaoLoginRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetKakaoLoginURLRequest.ProtoReflect.Descriptor instead.
+func (*GetKakaoLoginURLRequest) Descriptor() ([]byte, []int) {
 	return file_account_proto_rawDescGZIP(), []int{0}
 }
 
-type KakaoLoginResponse struct {
+type GetKakaoLoginURLResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	LoginURL      string                 `protobuf:"bytes,1,opt,name=loginURL,proto3" json:"loginURL,omitempty"`
+	LoginUrl      string                 `protobuf:"bytes,1,opt,name=login_url,json=loginUrl,proto3" json:"login_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *KakaoLoginResponse) Reset() {
-	*x = KakaoLoginResponse{}
+func (x *GetKakaoLoginURLResponse) Reset() {
+	*x = GetKakaoLoginURLResponse{}
 	mi := &file_account_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *KakaoLoginResponse) String() string {
+func (x *GetKakaoLoginURLResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*KakaoLoginResponse) ProtoMessage() {}
+func (*GetKakaoLoginURLResponse) ProtoMessage() {}
 
-func (x *KakaoLoginResponse) ProtoReflect() protoreflect.Message {
+func (x *GetKakaoLoginURLResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_account_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -91,39 +90,39 @@ func (x *KakaoLoginResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use KakaoLoginResponse.ProtoReflect.Descriptor instead.
-func (*KakaoLoginResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetKakaoLoginURLResponse.ProtoReflect.Descriptor instead.
+func (*GetKakaoLoginURLResponse) Descriptor() ([]byte, []int) {
 	return file_account_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *KakaoLoginResponse) GetLoginURL() string {
+func (x *GetKakaoLoginURLResponse) GetLoginUrl() string {
 	if x != nil {
-		return x.LoginURL
+		return x.LoginUrl
 	}
 	return ""
 }
 
-type KakaoCallBackRequest struct {
+type GetKakaoCallBackRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *KakaoCallBackRequest) Reset() {
-	*x = KakaoCallBackRequest{}
+func (x *GetKakaoCallBackRequest) Reset() {
+	*x = GetKakaoCallBackRequest{}
 	mi := &file_account_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *KakaoCallBackRequest) String() string {
+func (x *GetKakaoCallBackRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*KakaoCallBackRequest) ProtoMessage() {}
+func (*GetKakaoCallBackRequest) ProtoMessage() {}
 
-func (x *KakaoCallBackRequest) ProtoReflect() protoreflect.Message {
+func (x *GetKakaoCallBackRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_account_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -135,41 +134,41 @@ func (x *KakaoCallBackRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use KakaoCallBackRequest.ProtoReflect.Descriptor instead.
-func (*KakaoCallBackRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetKakaoCallBackRequest.ProtoReflect.Descriptor instead.
+func (*GetKakaoCallBackRequest) Descriptor() ([]byte, []int) {
 	return file_account_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *KakaoCallBackRequest) GetCode() string {
+func (x *GetKakaoCallBackRequest) GetCode() string {
 	if x != nil {
 		return x.Code
 	}
 	return ""
 }
 
-type KakaoCallBackResponse struct {
+type GetKakaoCallBackResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccessToken   string                 `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
-	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refreshToken,proto3" json:"refreshToken,omitempty"`
-	UserInfoJson  string                 `protobuf:"bytes,3,opt,name=userInfoJson,proto3" json:"userInfoJson,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	UserInfoJson  string                 `protobuf:"bytes,3,opt,name=user_info_json,json=userInfoJson,proto3" json:"user_info_json,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *KakaoCallBackResponse) Reset() {
-	*x = KakaoCallBackResponse{}
+func (x *GetKakaoCallBackResponse) Reset() {
+	*x = GetKakaoCallBackResponse{}
 	mi := &file_account_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *KakaoCallBackResponse) String() string {
+func (x *GetKakaoCallBackResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*KakaoCallBackResponse) ProtoMessage() {}
+func (*GetKakaoCallBackResponse) ProtoMessage() {}
 
-func (x *KakaoCallBackResponse) ProtoReflect() protoreflect.Message {
+func (x *GetKakaoCallBackResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_account_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -181,26 +180,26 @@ func (x *KakaoCallBackResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use KakaoCallBackResponse.ProtoReflect.Descriptor instead.
-func (*KakaoCallBackResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetKakaoCallBackResponse.ProtoReflect.Descriptor instead.
+func (*GetKakaoCallBackResponse) Descriptor() ([]byte, []int) {
 	return file_account_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *KakaoCallBackResponse) GetAccessToken() string {
+func (x *GetKakaoCallBackResponse) GetAccessToken() string {
 	if x != nil {
 		return x.AccessToken
 	}
 	return ""
 }
 
-func (x *KakaoCallBackResponse) GetRefreshToken() string {
+func (x *GetKakaoCallBackResponse) GetRefreshToken() string {
 	if x != nil {
 		return x.RefreshToken
 	}
 	return ""
 }
 
-func (x *KakaoCallBackResponse) GetUserInfoJson() string {
+func (x *GetKakaoCallBackResponse) GetUserInfoJson() string {
 	if x != nil {
 		return x.UserInfoJson
 	}
@@ -261,8 +260,8 @@ func (x *LoginRequest) GetPassword() string {
 
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccessToken   string                 `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
-	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refreshToken,proto3" json:"refreshToken,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -411,32 +410,32 @@ var File_account_proto protoreflect.FileDescriptor
 
 const file_account_proto_rawDesc = "" +
 	"\n" +
-	"\raccount.proto\x12\x1fgo.escape.ship.proto.accountapi\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/protobuf/any.proto\"\x13\n" +
-	"\x11KakaoLoginRequest\"0\n" +
-	"\x12KakaoLoginResponse\x12\x1a\n" +
-	"\bloginURL\x18\x01 \x01(\tR\bloginURL\"*\n" +
-	"\x14KakaoCallBackRequest\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\"\x81\x01\n" +
-	"\x15KakaoCallBackResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
-	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\x12\"\n" +
-	"\fuserInfoJson\x18\x03 \x01(\tR\fuserInfoJson\"@\n" +
+	"\raccount.proto\x12\x17go.escape.ship.proto.v1\x1a\x1cgoogle/api/annotations.proto\"\x19\n" +
+	"\x17GetKakaoLoginURLRequest\"7\n" +
+	"\x18GetKakaoLoginURLResponse\x12\x1b\n" +
+	"\tlogin_url\x18\x01 \x01(\tR\bloginUrl\"-\n" +
+	"\x17GetKakaoCallBackRequest\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\"\x88\x01\n" +
+	"\x18GetKakaoCallBackResponse\x12!\n" +
+	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12$\n" +
+	"\x0euser_info_json\x18\x03 \x01(\tR\fuserInfoJson\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"U\n" +
-	"\rLoginResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
-	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\"C\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"W\n" +
+	"\rLoginResponse\x12!\n" +
+	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"C\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\",\n" +
 	"\x10RegisterResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xcc\x04\n" +
-	"\aAccount\x12\x97\x01\n" +
-	"\x10GetKakaoLoginURL\x122.go.escape.ship.proto.accountapi.KakaoLoginRequest\x1a3.go.escape.ship.proto.accountapi.KakaoLoginResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/oauth/kakao/login\x12\xa3\x01\n" +
-	"\x10GetKakaoCallBack\x125.go.escape.ship.proto.accountapi.KakaoCallBackRequest\x1a6.go.escape.ship.proto.accountapi.KakaoCallBackResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/oauth/kakao/callback\x12y\n" +
-	"\x05Login\x12-.go.escape.ship.proto.accountapi.LoginRequest\x1a..go.escape.ship.proto.accountapi.LoginResponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/login\x12\x85\x01\n" +
-	"\bRegister\x120.go.escape.ship.proto.accountapi.RegisterRequest\x1a1.go.escape.ship.proto.accountapi.RegisterResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/registerB#Z!github.com/escape-ship/protos/genb\x06proto3"
+	"\amessage\x18\x01 \x01(\tR\amessage2\xa4\x04\n" +
+	"\x0eAccountService\x12\x93\x01\n" +
+	"\x10GetKakaoLoginURL\x120.go.escape.ship.proto.v1.GetKakaoLoginURLRequest\x1a1.go.escape.ship.proto.v1.GetKakaoLoginURLResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/oauth/kakao/login\x12\x99\x01\n" +
+	"\x10GetKakaoCallBack\x120.go.escape.ship.proto.v1.GetKakaoCallBackRequest\x1a1.go.escape.ship.proto.v1.GetKakaoCallBackResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/oauth/kakao/callback\x12i\n" +
+	"\x05Login\x12%.go.escape.ship.proto.v1.LoginRequest\x1a&.go.escape.ship.proto.v1.LoginResponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/login\x12u\n" +
+	"\bRegister\x12(.go.escape.ship.proto.v1.RegisterRequest\x1a).go.escape.ship.proto.v1.RegisterResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/registerB#Z!github.com/escape-ship/protos/genb\x06proto3"
 
 var (
 	file_account_proto_rawDescOnce sync.Once
@@ -452,24 +451,24 @@ func file_account_proto_rawDescGZIP() []byte {
 
 var file_account_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_account_proto_goTypes = []any{
-	(*KakaoLoginRequest)(nil),     // 0: go.escape.ship.proto.accountapi.KakaoLoginRequest
-	(*KakaoLoginResponse)(nil),    // 1: go.escape.ship.proto.accountapi.KakaoLoginResponse
-	(*KakaoCallBackRequest)(nil),  // 2: go.escape.ship.proto.accountapi.KakaoCallBackRequest
-	(*KakaoCallBackResponse)(nil), // 3: go.escape.ship.proto.accountapi.KakaoCallBackResponse
-	(*LoginRequest)(nil),          // 4: go.escape.ship.proto.accountapi.LoginRequest
-	(*LoginResponse)(nil),         // 5: go.escape.ship.proto.accountapi.LoginResponse
-	(*RegisterRequest)(nil),       // 6: go.escape.ship.proto.accountapi.RegisterRequest
-	(*RegisterResponse)(nil),      // 7: go.escape.ship.proto.accountapi.RegisterResponse
+	(*GetKakaoLoginURLRequest)(nil),  // 0: go.escape.ship.proto.v1.GetKakaoLoginURLRequest
+	(*GetKakaoLoginURLResponse)(nil), // 1: go.escape.ship.proto.v1.GetKakaoLoginURLResponse
+	(*GetKakaoCallBackRequest)(nil),  // 2: go.escape.ship.proto.v1.GetKakaoCallBackRequest
+	(*GetKakaoCallBackResponse)(nil), // 3: go.escape.ship.proto.v1.GetKakaoCallBackResponse
+	(*LoginRequest)(nil),             // 4: go.escape.ship.proto.v1.LoginRequest
+	(*LoginResponse)(nil),            // 5: go.escape.ship.proto.v1.LoginResponse
+	(*RegisterRequest)(nil),          // 6: go.escape.ship.proto.v1.RegisterRequest
+	(*RegisterResponse)(nil),         // 7: go.escape.ship.proto.v1.RegisterResponse
 }
 var file_account_proto_depIdxs = []int32{
-	0, // 0: go.escape.ship.proto.accountapi.Account.GetKakaoLoginURL:input_type -> go.escape.ship.proto.accountapi.KakaoLoginRequest
-	2, // 1: go.escape.ship.proto.accountapi.Account.GetKakaoCallBack:input_type -> go.escape.ship.proto.accountapi.KakaoCallBackRequest
-	4, // 2: go.escape.ship.proto.accountapi.Account.Login:input_type -> go.escape.ship.proto.accountapi.LoginRequest
-	6, // 3: go.escape.ship.proto.accountapi.Account.Register:input_type -> go.escape.ship.proto.accountapi.RegisterRequest
-	1, // 4: go.escape.ship.proto.accountapi.Account.GetKakaoLoginURL:output_type -> go.escape.ship.proto.accountapi.KakaoLoginResponse
-	3, // 5: go.escape.ship.proto.accountapi.Account.GetKakaoCallBack:output_type -> go.escape.ship.proto.accountapi.KakaoCallBackResponse
-	5, // 6: go.escape.ship.proto.accountapi.Account.Login:output_type -> go.escape.ship.proto.accountapi.LoginResponse
-	7, // 7: go.escape.ship.proto.accountapi.Account.Register:output_type -> go.escape.ship.proto.accountapi.RegisterResponse
+	0, // 0: go.escape.ship.proto.v1.AccountService.GetKakaoLoginURL:input_type -> go.escape.ship.proto.v1.GetKakaoLoginURLRequest
+	2, // 1: go.escape.ship.proto.v1.AccountService.GetKakaoCallBack:input_type -> go.escape.ship.proto.v1.GetKakaoCallBackRequest
+	4, // 2: go.escape.ship.proto.v1.AccountService.Login:input_type -> go.escape.ship.proto.v1.LoginRequest
+	6, // 3: go.escape.ship.proto.v1.AccountService.Register:input_type -> go.escape.ship.proto.v1.RegisterRequest
+	1, // 4: go.escape.ship.proto.v1.AccountService.GetKakaoLoginURL:output_type -> go.escape.ship.proto.v1.GetKakaoLoginURLResponse
+	3, // 5: go.escape.ship.proto.v1.AccountService.GetKakaoCallBack:output_type -> go.escape.ship.proto.v1.GetKakaoCallBackResponse
+	5, // 6: go.escape.ship.proto.v1.AccountService.Login:output_type -> go.escape.ship.proto.v1.LoginResponse
+	7, // 7: go.escape.ship.proto.v1.AccountService.Register:output_type -> go.escape.ship.proto.v1.RegisterResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

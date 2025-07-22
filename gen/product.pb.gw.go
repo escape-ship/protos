@@ -93,7 +93,7 @@ func local_request_ProductService_GetProductByID_0(ctx context.Context, marshale
 
 func request_ProductService_PostProducts_0(ctx context.Context, marshaler runtime.Marshaler, client ProductServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq PostProductRequest
+		protoReq PostProductsRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -105,7 +105,7 @@ func request_ProductService_PostProducts_0(ctx context.Context, marshaler runtim
 
 func local_request_ProductService_PostProducts_0(ctx context.Context, marshaler runtime.Marshaler, server ProductServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq PostProductRequest
+		protoReq PostProductsRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -169,7 +169,7 @@ func RegisterProductServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.productapi.ProductService/GetProducts", runtime.WithHTTPPathPattern("/products"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.ProductService/GetProducts", runtime.WithHTTPPathPattern("/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -189,7 +189,7 @@ func RegisterProductServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.productapi.ProductService/GetProductByID", runtime.WithHTTPPathPattern("/products/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.ProductService/GetProductByID", runtime.WithHTTPPathPattern("/products/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -209,7 +209,7 @@ func RegisterProductServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.productapi.ProductService/PostProducts", runtime.WithHTTPPathPattern("/products"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.ProductService/PostProducts", runtime.WithHTTPPathPattern("/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -229,7 +229,7 @@ func RegisterProductServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.productapi.ProductService/GetProductOptions", runtime.WithHTTPPathPattern("/product/{id}/options"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.ProductService/GetProductOptions", runtime.WithHTTPPathPattern("/product/{id}/options"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -287,7 +287,7 @@ func RegisterProductServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.productapi.ProductService/GetProducts", runtime.WithHTTPPathPattern("/products"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.ProductService/GetProducts", runtime.WithHTTPPathPattern("/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -304,7 +304,7 @@ func RegisterProductServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.productapi.ProductService/GetProductByID", runtime.WithHTTPPathPattern("/products/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.ProductService/GetProductByID", runtime.WithHTTPPathPattern("/products/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -321,7 +321,7 @@ func RegisterProductServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.productapi.ProductService/PostProducts", runtime.WithHTTPPathPattern("/products"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.ProductService/PostProducts", runtime.WithHTTPPathPattern("/products"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -338,7 +338,7 @@ func RegisterProductServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.productapi.ProductService/GetProductOptions", runtime.WithHTTPPathPattern("/product/{id}/options"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.ProductService/GetProductOptions", runtime.WithHTTPPathPattern("/product/{id}/options"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

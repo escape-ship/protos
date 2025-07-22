@@ -4,5 +4,7 @@ deps:
   - buf.build/googleapis/googleapis
   - buf.build/grpc-ecosystem/grpc-gateway
 lint:
+  use:
+    - STANDARD
   except:
     - PACKAGE_DIRECTORY_MATCH

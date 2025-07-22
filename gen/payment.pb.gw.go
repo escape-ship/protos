@@ -119,7 +119,7 @@ func RegisterPaymentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoReady", runtime.WithHTTPPathPattern("/payment/kakao/ready"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.PaymentService/KakaoReady", runtime.WithHTTPPathPattern("/payment/kakao/ready"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -139,7 +139,7 @@ func RegisterPaymentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoApprove", runtime.WithHTTPPathPattern("/payment/kakao/approve"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.PaymentService/KakaoApprove", runtime.WithHTTPPathPattern("/payment/kakao/approve"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -159,7 +159,7 @@ func RegisterPaymentServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoCancel", runtime.WithHTTPPathPattern("/payment/kakao/cancel"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/go.escape.ship.proto.v1.PaymentService/KakaoCancel", runtime.WithHTTPPathPattern("/payment/kakao/cancel"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -217,7 +217,7 @@ func RegisterPaymentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoReady", runtime.WithHTTPPathPattern("/payment/kakao/ready"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.PaymentService/KakaoReady", runtime.WithHTTPPathPattern("/payment/kakao/ready"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -234,7 +234,7 @@ func RegisterPaymentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoApprove", runtime.WithHTTPPathPattern("/payment/kakao/approve"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.PaymentService/KakaoApprove", runtime.WithHTTPPathPattern("/payment/kakao/approve"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -251,7 +251,7 @@ func RegisterPaymentServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.paymentapi.v1.PaymentService/KakaoCancel", runtime.WithHTTPPathPattern("/payment/kakao/cancel"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/go.escape.ship.proto.v1.PaymentService/KakaoCancel", runtime.WithHTTPPathPattern("/payment/kakao/cancel"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
