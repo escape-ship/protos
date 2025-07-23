@@ -1,124 +1,176 @@
-// Package gen contains generated Protocol Buffer and gRPC code for the Escape Ship e-commerce platform.
+// Package gen provides generated Go bindings for the Escape Ship e-commerce platform's gRPC services.
 //
 // # Overview
 //
-// This package provides Go bindings for all microservices in the Escape Ship platform:
-//   - AccountService: User authentication and Kakao OAuth integration
-//   - OrderService: Order management and tracking
-//   - PaymentService: Kakao Pay integration and payment processing
-//   - ProductService: Product catalog and options management
+// This package contains Protocol Buffer generated code for a microservices-based e-commerce platform
+// called "Escape Ship". It provides client and server stubs for four core services that handle
+// authentication, product management, order processing, and payment integration.
 //
 // # Services
 //
-// ## AccountService
+// The platform consists of four main gRPC services:
 //
-// Handles user authentication, registration, and Kakao OAuth integration.
+//   - AccountService: User authentication and Kakao OAuth integration
+//   - ProductService: Product catalog management with categories and options
+//   - OrderService: Order creation and retrieval with detailed item tracking
+//   - PaymentService: Kakao Pay payment processing integration
 //
-// Endpoints:
-//   - GetKakaoLoginURL: Generate Kakao OAuth login URL
-//   - GetKakaoCallBack: Handle Kakao OAuth callback
-//   - Login: User authentication
-//   - Register: User registration
+// # Architecture
 //
-// ## OrderService
+// All services are designed to work together in a microservices architecture:
 //
-// Manages order creation and retrieval.
+//	┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+//	│  AccountService │    │ ProductService  │    │  OrderService   │
+//	│                 │    │                 │    │                 │
+//	│ • OAuth Login   │    │ • Categories    │    │ • Order Items   │
+//	│ • Registration  │    │ • Product CRUD  │    │ • Order Status  │
+//	│ • Token Auth    │    │ • Options       │    │ • Tracking      │
+//	└─────────────────┘    └─────────────────┘    └─────────────────┘
+//	         │                       │                       │
+//	         └───────────────────────┼───────────────────────┘
+//	                                 │
+//	                    ┌─────────────────┐
+//	                    │ PaymentService  │
+//	                    │                 │
+//	                    │ • Kakao Pay     │
+//	                    │ • Ready/Approve │
+//	                    │ • Cancel        │
+//	                    └─────────────────┘
 //
-// Endpoints:
-//   - InsertOrder: Create a new order
-//   - GetAllOrders: Retrieve all orders
+// # Authentication Flow
 //
-// ## PaymentService
+// The AccountService supports both traditional email/password authentication and Kakao OAuth:
 //
-// Integrates with Kakao Pay for payment processing.
+//	// Traditional Login
+//	client := NewAccountServiceClient(conn)
+//	response, err := client.Login(ctx, &LoginRequest{
+//	    Email:    "user@example.com",
+//	    Password: "password123",
+//	})
 //
-// Endpoints:
-//   - KakaoReady: Prepare payment with Kakao Pay
-//   - KakaoApprove: Approve payment transaction
-//   - KakaoCancel: Cancel payment transaction
+//	// Kakao OAuth Flow
+//	urlResp, err := client.GetKakaoLoginURL(ctx, &GetKakaoLoginURLRequest{})
+//	// User visits urlResp.LoginUrl
+//	callbackResp, err := client.GetKakaoCallBack(ctx, &GetKakaoCallBackRequest{
+//	    Code: "oauth_code_from_kakao",
+//	})
 //
-// ## ProductService
+// # Product Management
 //
-// Manages product catalog, categories, and product options.
+// Products are organized with categories and support configurable options:
 //
-// Endpoints:
-//   - GetProducts: Retrieve all products
-//   - GetProductByID: Get specific product details
-//   - PostProducts: Create new product
-//   - GetProductOptions: Get product options and values
+//	// Get all products
+//	products, err := productClient.GetProducts(ctx, &GetProductsRequest{})
 //
-// # Usage Examples
+//	// Get specific product with options
+//	product, err := productClient.GetProductByID(ctx, &GetProductByIDRequest{
+//	    Id: "product-123",
+//	})
+//	options, err := productClient.GetProductOptions(ctx, &GetProductOptionsRequest{
+//	    Id: "product-123",
+//	})
 //
-// ## Creating a gRPC Client
+// # Order Processing
 //
-//	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
-//	if err != nil {
-//		log.Fatal(err)
+// Orders contain multiple items with product details and support various payment methods:
+//
+//	order := &InsertOrderRequest{
+//	    UserId:          "user-123",
+//	    OrderNumber:     "ORD-2024-001",
+//	    Status:          "pending",
+//	    TotalPrice:      50000,
+//	    PaymentMethod:   "kakao_pay",
+//	    ShippingAddress: "123 Main St, Seoul",
+//	    Items: []*InsertOrderItem{
+//	        {
+//	            ProductId:      "prod-1",
+//	            ProductName:    "Sample Product",
+//	            ProductOptions: "Size: M, Color: Blue",
+//	            ProductPrice:   25000,
+//	            Quantity:       2,
+//	        },
+//	    },
 //	}
-//	defer conn.Close()
+//	result, err := orderClient.InsertOrder(ctx, order)
 //
-//	client := gen.NewAccountServiceClient(conn)
+// # Payment Integration
 //
-// ## Making a gRPC Call
+// Kakao Pay integration follows the standard prepare-approve-complete flow:
 //
-//	ctx := context.Background()
-//	resp, err := client.GetKakaoLoginURL(ctx, &gen.GetKakaoLoginURLRequest{})
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Println("Login URL:", resp.LoginUrl)
+//	// 1. Prepare payment
+//	readyResp, err := paymentClient.KakaoReady(ctx, &KakaoReadyRequest{
+//	    PartnerOrderId: "order-123",
+//	    PartnerUserId:  "user-456",
+//	    ItemName:       "Order Items",
+//	    Quantity:       2,
+//	    TotalAmount:    50000,
+//	    TaxFreeAmount:  0,
+//	})
 //
-// ## Implementing a gRPC Server
-//
-//	type accountServer struct {
-//		gen.UnimplementedAccountServiceServer
-//	}
-//
-//	func (s *accountServer) GetKakaoLoginURL(
-//		ctx context.Context,
-//		req *gen.GetKakaoLoginURLRequest,
-//	) (*gen.GetKakaoLoginURLResponse, error) {
-//		return &gen.GetKakaoLoginURLResponse{
-//			LoginUrl: "https://kauth.kakao.com/oauth/authorize?...",
-//		}, nil
-//	}
+//	// 2. User completes payment on Kakao
+//	// 3. Approve payment
+//	approveResp, err := paymentClient.KakaoApprove(ctx, &KakaoApproveRequest{
+//	    Tid:            readyResp.Tid,
+//	    PartnerOrderId: "order-123",
+//	    PartnerUserId:  "user-456",
+//	    PgToken:        "payment_token_from_kakao",
+//	})
 //
 // # HTTP/JSON Gateway
 //
-// All services also support HTTP/JSON through gRPC-Gateway. The generated
-// gateway code automatically handles the conversion between HTTP requests
-// and gRPC calls.
+// All services support both gRPC and HTTP/JSON through grpc-gateway annotations.
+// The HTTP endpoints follow RESTful conventions:
 //
-// Example HTTP endpoints:
-//   - GET /oauth/kakao/login
-//   - POST /oauth/kakao/callback
-//   - POST /login
-//   - GET /products
-//   - POST /payment/kakao/ready
+//	Account Service:
+//	  GET  /oauth/kakao/login     - Get Kakao login URL
+//	  POST /oauth/kakao/callback  - Handle OAuth callback
+//	  POST /login                 - Traditional login
+//	  POST /register              - User registration
 //
-// # Message Types
+//	Product Service:
+//	  GET  /products              - List all products
+//	  GET  /products/{id}         - Get specific product
+//	  POST /products              - Create new product
+//	  POST /product/{id}/options  - Get product options
 //
-// The package includes all Protocol Buffer message types for request/response
-// handling across services. All field names follow Go naming conventions
-// (PascalCase for exported fields) while maintaining Protocol Buffer
-// snake_case field definitions.
+//	Order Service:
+//	  POST /v1/order/insert       - Create new order
+//	  GET  /v1/order              - Get all orders
+//
+//	Payment Service:
+//	  POST /payment/kakao/ready   - Prepare Kakao payment
+//	  POST /payment/kakao/approve - Approve Kakao payment
+//	  POST /payment/kakao/cancel  - Cancel Kakao payment
 //
 // # Error Handling
 //
-// All service methods return standard Go errors that can be checked using
-// the status package from google.golang.org/grpc/status for gRPC-specific
-// error codes and details.
+// All services use standard gRPC status codes for error reporting. Common patterns include:
 //
-// # Thread Safety
+//   - InvalidArgument: Malformed requests or validation failures
+//   - NotFound: Requested resources don't exist
+//   - Unauthenticated: Authentication required or failed
+//   - Internal: Server-side processing errors
 //
-// All generated client types are safe for concurrent use by multiple
-// goroutines. Server implementations should ensure their own thread safety.
+// # Development
 //
-// # Version Compatibility
+// This package is generated from Protocol Buffer definitions using buf and the standard
+// Go gRPC toolchain. The source .proto files are maintained separately and should be
+// used for any modifications to the service definitions.
 //
-// This package follows semantic versioning. Breaking changes to the API
-// will result in a major version bump. Backward compatibility is maintained
-// within major versions.
+// Generated code includes:
+//   - Message types for all request/response structures
+//   - Service client interfaces for calling remote services
+//   - Service server interfaces for implementing services
+//   - HTTP/JSON gateway reverse proxy code
 //
-// Generated from Protocol Buffer definitions in the escape-ship/protos repository.
+// # Dependencies
+//
+// Key dependencies include:
+//   - google.golang.org/grpc - gRPC runtime
+//   - google.golang.org/protobuf - Protocol Buffer runtime
+//   - github.com/grpc-ecosystem/grpc-gateway/v2 - HTTP/gRPC gateway
+//   - google.golang.org/genproto - Google API annotations
+//
+// For complete API documentation and examples, see the individual service client
+// interfaces and message type definitions in this package.
 package gen
