@@ -258,7 +258,7 @@ type InsertOrderRequest struct {
 	ShippingAddress string                    `protobuf:"bytes,8,opt,name=shipping_address,json=shippingAddress,proto3" json:"shipping_address,omitempty"`
 	PaidAt          string                    `protobuf:"bytes,9,opt,name=paid_at,json=paidAt,proto3" json:"paid_at,omitempty"`
 	Memo            string                    `protobuf:"bytes,10,opt,name=memo,proto3" json:"memo,omitempty"`
-	Items           []*InsertOrderItemRequest `protobuf:"bytes,11,rep,name=items,proto3" json:"items,omitempty"`
+	Items           []*InsertOrderItemRequest `protobuf:"bytes,12,rep,name=items,proto3" json:"items,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -371,13 +371,14 @@ func (x *InsertOrderRequest) GetItems() []*InsertOrderItemRequest {
 }
 
 type InsertOrderItemRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProductId     string                 `protobuf:"bytes,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	ProductName   string                 `protobuf:"bytes,2,opt,name=product_name,json=productName,proto3" json:"product_name,omitempty"`
-	ProductPrice  int64                  `protobuf:"varint,3,opt,name=product_price,json=productPrice,proto3" json:"product_price,omitempty"`
-	Quantity      int32                  `protobuf:"varint,4,opt,name=quantity,proto3" json:"quantity,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ProductId      string                 `protobuf:"bytes,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	ProductName    string                 `protobuf:"bytes,2,opt,name=product_name,json=productName,proto3" json:"product_name,omitempty"`
+	ProductOptions string                 `protobuf:"bytes,3,opt,name=product_options,json=productOptions,proto3" json:"product_options,omitempty"`
+	ProductPrice   int64                  `protobuf:"varint,4,opt,name=product_price,json=productPrice,proto3" json:"product_price,omitempty"`
+	Quantity       int32                  `protobuf:"varint,5,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *InsertOrderItemRequest) Reset() {
@@ -420,6 +421,13 @@ func (x *InsertOrderItemRequest) GetProductId() string {
 func (x *InsertOrderItemRequest) GetProductName() string {
 	if x != nil {
 		return x.ProductName
+	}
+	return ""
+}
+
+func (x *InsertOrderItemRequest) GetProductOptions() string {
+	if x != nil {
+		return x.ProductOptions
 	}
 	return ""
 }
@@ -605,13 +613,14 @@ const file_order_proto_rawDesc = "" +
 	"\apaid_at\x18\t \x01(\tR\x06paidAt\x12\x12\n" +
 	"\x04memo\x18\n" +
 	" \x01(\tR\x04memo\x12E\n" +
-	"\x05items\x18\v \x03(\v2/.go.escape.ship.proto.v1.InsertOrderItemRequestR\x05items\"\x9b\x01\n" +
+	"\x05items\x18\f \x03(\v2/.go.escape.ship.proto.v1.InsertOrderItemRequestR\x05items\"\xc4\x01\n" +
 	"\x16InsertOrderItemRequest\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12!\n" +
-	"\fproduct_name\x18\x02 \x01(\tR\vproductName\x12#\n" +
-	"\rproduct_price\x18\x03 \x01(\x03R\fproductPrice\x12\x1a\n" +
-	"\bquantity\x18\x04 \x01(\x05R\bquantity\"%\n" +
+	"\fproduct_name\x18\x02 \x01(\tR\vproductName\x12'\n" +
+	"\x0fproduct_options\x18\x03 \x01(\tR\x0eproductOptions\x12#\n" +
+	"\rproduct_price\x18\x04 \x01(\x03R\fproductPrice\x12\x1a\n" +
+	"\bquantity\x18\x05 \x01(\x05R\bquantity\"%\n" +
 	"\x13InsertOrderResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x15\n" +
 	"\x13GetAllOrdersRequest\"N\n" +

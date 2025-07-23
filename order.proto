@@ -55,14 +55,15 @@ message InsertOrderRequest {
     string shipping_address = 8;
     string paid_at = 9;
     string memo = 10;
-    repeated InsertOrderItemRequest items = 11;
+    repeated InsertOrderItemRequest items = 12;
 }
 
 message InsertOrderItemRequest {
     string product_id = 1;
     string product_name = 2;
-    int64 product_price = 3;
-    int32 quantity = 4;
+    string product_options = 3;
+    int64 product_price = 4;
+    int32 quantity = 5;
 }
 
 message InsertOrderResponse {
