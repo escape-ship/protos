@@ -20,6 +20,7 @@ message Product {
     string image_url = 5;
     string created_at = 6;
     string updated_at = 7;
+    repeated ProductOption options = 8;
 }
 
 // 전체 상품 목록 요청 (필터 없음)
@@ -50,10 +51,6 @@ message PostProductsResponse {
     string message = 1;
 }
 
-message GetProductOptionsRequest {
-  string id = 1;
-}
-
 message OptionValue {
   int32 value_id = 1;
   string value = 2;
@@ -63,11 +60,6 @@ message ProductOption {
   int32 option_id = 1;
   string option_name = 2;
   repeated OptionValue values = 3;
-}
-
-message GetProductOptionsResponse {
-  string product_id = 1;
-  repeated ProductOption options = 2;
 }
 
 service ProductService {
@@ -84,12 +76,6 @@ service ProductService {
     rpc PostProducts(PostProductsRequest) returns (PostProductsResponse) {
         option (google.api.http) = {
             post: "/products"
-            body: "*"
-        };
-    }
-    rpc GetProductOptions(GetProductOptionsRequest) returns (GetProductOptionsResponse) {
-        option (google.api.http) = {
-            post: "/product/{id}/options"
             body: "*"
         };
     }

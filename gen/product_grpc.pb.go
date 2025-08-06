@@ -19,10 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProductService_GetProducts_FullMethodName       = "/go.escape.ship.proto.v1.ProductService/GetProducts"
-	ProductService_GetProductByID_FullMethodName    = "/go.escape.ship.proto.v1.ProductService/GetProductByID"
-	ProductService_PostProducts_FullMethodName      = "/go.escape.ship.proto.v1.ProductService/PostProducts"
-	ProductService_GetProductOptions_FullMethodName = "/go.escape.ship.proto.v1.ProductService/GetProductOptions"
+	ProductService_GetProducts_FullMethodName    = "/go.escape.ship.proto.v1.ProductService/GetProducts"
+	ProductService_GetProductByID_FullMethodName = "/go.escape.ship.proto.v1.ProductService/GetProductByID"
+	ProductService_PostProducts_FullMethodName   = "/go.escape.ship.proto.v1.ProductService/PostProducts"
 )
 
 // ProductServiceClient is the client API for ProductService service.
@@ -32,7 +31,6 @@ type ProductServiceClient interface {
 	GetProducts(ctx context.Context, in *GetProductsRequest, opts ...grpc.CallOption) (*GetProductsResponse, error)
 	GetProductByID(ctx context.Context, in *GetProductByIDRequest, opts ...grpc.CallOption) (*GetProductByIDResponse, error)
 	PostProducts(ctx context.Context, in *PostProductsRequest, opts ...grpc.CallOption) (*PostProductsResponse, error)
-	GetProductOptions(ctx context.Context, in *GetProductOptionsRequest, opts ...grpc.CallOption) (*GetProductOptionsResponse, error)
 }
 
 type productServiceClient struct {
@@ -73,16 +71,6 @@ func (c *productServiceClient) PostProducts(ctx context.Context, in *PostProduct
 	return out, nil
 }
 
-func (c *productServiceClient) GetProductOptions(ctx context.Context, in *GetProductOptionsRequest, opts ...grpc.CallOption) (*GetProductOptionsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetProductOptionsResponse)
-	err := c.cc.Invoke(ctx, ProductService_GetProductOptions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ProductServiceServer is the server API for ProductService service.
 // All implementations must embed UnimplementedProductServiceServer
 // for forward compatibility.
@@ -90,7 +78,6 @@ type ProductServiceServer interface {
 	GetProducts(context.Context, *GetProductsRequest) (*GetProductsResponse, error)
 	GetProductByID(context.Context, *GetProductByIDRequest) (*GetProductByIDResponse, error)
 	PostProducts(context.Context, *PostProductsRequest) (*PostProductsResponse, error)
-	GetProductOptions(context.Context, *GetProductOptionsRequest) (*GetProductOptionsResponse, error)
 	mustEmbedUnimplementedProductServiceServer()
 }
 
@@ -109,9 +96,6 @@ func (UnimplementedProductServiceServer) GetProductByID(context.Context, *GetPro
 }
 func (UnimplementedProductServiceServer) PostProducts(context.Context, *PostProductsRequest) (*PostProductsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostProducts not implemented")
-}
-func (UnimplementedProductServiceServer) GetProductOptions(context.Context, *GetProductOptionsRequest) (*GetProductOptionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetProductOptions not implemented")
 }
 func (UnimplementedProductServiceServer) mustEmbedUnimplementedProductServiceServer() {}
 func (UnimplementedProductServiceServer) testEmbeddedByValue()                        {}
@@ -188,24 +172,6 @@ func _ProductService_PostProducts_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductService_GetProductOptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProductOptionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProductServiceServer).GetProductOptions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProductService_GetProductOptions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductServiceServer).GetProductOptions(ctx, req.(*GetProductOptionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ProductService_ServiceDesc is the grpc.ServiceDesc for ProductService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -224,10 +190,6 @@ var ProductService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PostProducts",
 			Handler:    _ProductService_PostProducts_Handler,
-		},
-		{
-			MethodName: "GetProductOptions",
-			Handler:    _ProductService_GetProductOptions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
