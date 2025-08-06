@@ -5,7 +5,7 @@ import "google/api/annotations.proto";
 
 option go_package = "github.com/escape-ship/protos/gen";
 
-// 카테고리 정보
+// 카테고리 정보 (단일 카테고리)
 message Category {
     int64 id = 1;
     string name = 2;
@@ -15,12 +15,15 @@ message Category {
 message Product {
     string id = 1;
     string name = 2;
-    repeated Category categories = 3;
+    Category category = 3;         // 단일 카테고리로 변경
     int64 price = 4;
     string image_url = 5;
-    string created_at = 6;
-    string updated_at = 7;
-    repeated ProductOption options = 8;
+    string description = 6;        // 설명 추가
+    string created_at = 7;
+    string updated_at = 8;
+
+    // options를 JSON 문자열로 처리 (유연성을 위해)
+    string options_json = 9;
 }
 
 // 전체 상품 목록 요청 (필터 없음)
@@ -30,7 +33,7 @@ message GetProductsResponse {
     repeated Product products = 1;
 }
 
-// 이름으로 상품 조회 요청
+// ID로 상품 조회 요청
 message GetProductByIDRequest {
     string id = 1;
 }
@@ -42,24 +45,15 @@ message GetProductByIDResponse {
 // 상품 추가 요청
 message PostProductsRequest {
     string name = 1;
-    repeated string categories = 2;
+    int64 category_id = 2;       // 단일 카테고리 id
     int64 price = 3;
     string image_url = 4;
+    string description = 5;
+    string options_json = 6;     // JSON 문자열로 옵션 전달
 }
 
 message PostProductsResponse {
     string message = 1;
-}
-
-message OptionValue {
-  int32 value_id = 1;
-  string value = 2;
-}
-
-message ProductOption {
-  int32 option_id = 1;
-  string option_name = 2;
-  repeated OptionValue values = 3;
 }
 
 service ProductService {
